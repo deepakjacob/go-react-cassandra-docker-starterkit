@@ -38,12 +38,13 @@ You can also use the following command incase you want to bring up **Cassandra**
 docker run -p 9042:9042 --rm --name jd_cassandra -d cassandra:latest
 ```
 
-
-And repeat
+Once the container is up and running use the following command to connect to the container
 
 ```
-until finished
+docker exec -it jd_cassandra /bin/bash
 ```
+Then issue `cqlsh` command at the prompt to connect to the Cassandra we jus brought into life. Your prompt should look like the following [image](./docs/images/ConnectToCassandraRunningInDocker.png)
+
 
 End with an example of getting some data out of the system or using it for a little demo
 
