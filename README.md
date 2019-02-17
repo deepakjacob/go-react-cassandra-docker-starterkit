@@ -28,18 +28,18 @@ Give examples
 
 A step by step series of examples that tell how to get a development env running
 
-Make sure you have Docker running, then change to the root directory of the app and issue following command, to bring up the **Cassandra** in port **9042** with a **MAX_HEAP** **256M**
+Make sure you have Docker running, then change to the root directory of the app and issue following command, to bring up the **Cassandra** in **PORT** **9042** with a **MAX_HEAP** of **256M**
 ```
 docker-compose -f docker-compose-cassandra.yml up
 ```
-You can also use the following command incase you want to bring up **Cassandra** with bare minimum config
+You can also use the following command incase you want to bring up Cassandra with bare minimum config. Please note the the file `docker-compose-cassandra.yml` won't be used in this option and should be used just for testing.
 
 ```
 docker run -p 9042:9042 --rm --name jd_cassandra -d cassandra:latest
 ```
 
 Once the container is up and running use the following command to connect to the container
-
+In the below example `jd_cassandra` is the name of the container.
 ```
 docker exec -it jd_cassandra /bin/bash
 ```
@@ -48,7 +48,46 @@ Then issue `cqlsh` command at the prompt to connect to the Cassandra we jus brou
 Cassandra running in docker:
 ![Connect to cassandra running in docker](docs/images/ConnectToCassandraRunningInDocker.png "Connect to cassandra running in docker")
 
-End with an example of getting some data out of the system or using it for a little demo
+Also you can use `nodetool status` command to see the status of the cluster
+
+To make the `cqlsh` completions work install [easy install](https://docs.datastax.com/en/cql/3.3/cql/cql_using/startCqlLinuxMac.html)
+
+Once the above setup is done, next step is to create a `keyspace`, also note that we use same replication factor to the entire cluster
+
+```
+CREATE KEYSPACE IF NOT EXISTS employee WITH REPLICATION ={'class':'SimpleStrategy', 'replication_factor': 1};
+```
+The next step is to create a `emp` and `dept` tables under the keyspace created above
+
+```
+ use employee;
+
+ CREATE TABLE dept(
+    deptno int,
+    dname text,
+    loc text,
+    PRIMARY KEY (deptno));
+
+CREATE TABLE emp(
+    empno    UUID,
+    ename    text,
+    job      text,
+    mgr      UUID,
+    hiredate date,
+    sal      decimal,
+    comm     decimal,
+    deptno   int,
+    primary key (empno));
+
+INSERT INTO dept (deptno, dname, loc) VALUES (1, 'Marketing & Sales', 'New York City');
+
+```
+
+If everything go as expected we should be able to see the following output in console
+![Select rows from dept table](docs/images/SelectRowsFromDeptTable.png "Selec rows from dept table")
+
+
+
 
 ## Running the tests
 
