@@ -19,6 +19,10 @@ type Cassandra struct {
 	session *gocql.Session
 }
 
+func (c *Cassandra) GetSession() *gocql.Session {
+	return c.session
+}
+
 func (c *Cassandra) SetConfig(host string, keySpace string, timeout time.Duration) error {
 	if host == "" || keySpace == "" || timeout == 0 {
 		return errors.New("Missing: host, keyspace or timeout")
@@ -38,7 +42,7 @@ func (c *Cassandra) Open() (*Cassandra, error) {
 	cluster := gocql.NewCluster(c.config.Host)
 	cluster.Keyspace = c.config.KeySpaceName
 	cluster.Timeout = c.config.TimeoutDuration
-
+	cluster.DisableInitialHostLookup = true
 	//TODO: think about having gocql password authenticator
 	c.session, err = cluster.CreateSession()
 	if err != nil {
