@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"github/deepakjacob/go-react-cassandra-docker-starterkit/cassandra"
+
 	"github.com/gorilla/mux"
 )
 
@@ -21,6 +23,8 @@ func main() {
 	}
 
 	log.Fatal(srv.ListenAndServe())
+	CassandraSession := cassandra.Session
+	defer CassandraSession.Close()
 }
 
 func newRouter() *mux.Router {
