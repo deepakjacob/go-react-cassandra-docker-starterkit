@@ -81,12 +81,11 @@ CREATE TABLE emp(
 
 INSERT INTO dept (deptno, dname, loc) VALUES (1, 'Marketing & Sales', 'New York City');
 
+insert into emp (empno, ename, deptno, job, hiredate, mgr, sal, comm) values (now(), 'KING', null, 'PRESIDENT', '2018-01-31', null, 5000, 10);
 ```
 
 If everything go as expected we should be able to see the following output in console
 ![Select rows from dept table](docs/images/SelectRowsFromDeptTable.png "Selec rows from dept table")
-
-
 
 
 ## Running the tests
