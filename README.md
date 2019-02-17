@@ -46,9 +46,7 @@ docker exec -it jd_cassandra /bin/bash
 Then issue `cqlsh` command at the prompt to connect to the Cassandra we jus brought into life. Your prompt should look like the following
 
 Cassandra running in docker:
-![alt text][ConnectToCassandraRunningInDocker]
-
-[ConnectToCassandraRunningInDocker]: (./docs/images/ConnectToCassandraRunningInDocker.png)
+![Connect to cassandra running in docker](docs/images/ConnectToCassandraRunningInDocker.png "Connect to cassandra running in docker")
 
 End with an example of getting some data out of the system or using it for a little demo
 
