@@ -1,2 +1,4 @@
 /server/server
 cassandra_data/
+/.DS_Store
+/server/.DS_Store
