@@ -16,7 +16,7 @@ TBD - Detailed instructions
 
 Make sure that you have
 
-* [Go](https://golang.org) installed and * [GOPATH](https://github.com/golang/go/wiki/GOPATH) * [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) are resolved correctly
+[Go](https://golang.org) installed and [GOPATH](https://github.com/golang/go/wiki/GOPATH) and [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) are resolved correctly
 
 ```
 Give examples
