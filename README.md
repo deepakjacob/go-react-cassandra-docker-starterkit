@@ -16,7 +16,9 @@ TBD - Detailed instructions
 
 Make sure that you have
 
-[Go](https://golang.org) installed and [GOPATH](https://github.com/golang/go/wiki/GOPATH) and [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) are resolved correctly
+[Docker]() installed and running
+
+[Go](https://golang.org) installed and [GOPATH](https://github.com/golang/go/wiki/GOPATH) and [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) configured correctly
 
 ```
 Give examples
@@ -24,13 +26,18 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+A step by step series of examples that tell how to get a development env running
 
-Say what the step will be
+Make sure you have Docker running, then change to the root directory of the app and issue following command, to bring up the **Cassandra** in port **9042** with a **MAX_HEAP** **256M**
+```
+docker-compose -f docker-compose-cassandra.yml up
+```
+You can also use the following command incase you want to bring up **Cassandra** with bare minimum config
 
 ```
-Give the example
+docker run -p 9042:9042 --rm --name jd_cassandra -d cassandra:latest
 ```
+
 
 And repeat
 
