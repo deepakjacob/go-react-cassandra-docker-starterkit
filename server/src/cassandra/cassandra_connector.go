@@ -2,7 +2,6 @@ package cassandra
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/gocql/gocql"
@@ -49,7 +48,6 @@ func (c *Cassandra) Open() (*Cassandra, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("Cassandra init done...")
 	return c, nil
 }
 
