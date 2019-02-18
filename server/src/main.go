@@ -2,34 +2,48 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"flag"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gocql/gocql"
+	"github.com/google/logger"
 	"github.com/gorilla/mux"
 
 	"./cassandra"
 )
 
+const host = "127.0.0.1:9042"
+const keySpace = "employee"
+const connectionTimeout = 10 * time.Second
+
+var verbose = flag.Bool("verbose", false, "print info level logs to stdout")
+
 func main() {
+	flag.Parse()
+
+	logPath := os.Getenv("LOG_FILE_PATH")
+
+	lf, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0660)
+	if err != nil {
+		logger.Fatalf("failed to open log file: %v", err)
+	}
+	defer lf.Close()
+	defer logger.Init("LoggerExample", *verbose, true, lf).Close()
 
 	c := &cassandra.Cassandra{}
-	fmt.Println("Setting config...")
-	c.SetConfig("127.0.0.1:9042", "employee", 10*time.Second)
-	fmt.Println("Opening connection...")
-	_, err := c.Open()
+	logger.Info("connecting to cassandra ", host, ", keyspace ", keySpace, " with a timeout ", connectionTimeout)
+	c.SetConfig(host, keySpace, connectionTimeout)
+	_, err = c.Open()
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("No error while setting config...")
+	logger.Info("connected to host ", host)
 	defer c.Close()
-	fmt.Println("Trying to fire queries ....")
-
+	logger.Info("trying to fetch all employee(s)")
 	emps := getAllEmps(c)
-	fmt.Println("Got results ....")
-	fmt.Println(emps)
-
+	logger.Info("fetched ", len(emps), " employee(s)")
 }
 
 type Emp struct {
@@ -44,7 +58,6 @@ type Emp struct {
 }
 
 func getAllEmps(c *cassandra.Cassandra) []Emp {
-	fmt.Println("Getting all employees")
 	var emps []Emp
 	m := map[string]interface{}{}
 	iter := c.GetSession().Query("SELECT * FROM emp").Iter()
