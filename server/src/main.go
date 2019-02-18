@@ -1,49 +1,58 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
-	"flag"
 	"net/http"
-	"os"
 	"time"
 
 	"github.com/gocql/gocql"
-	"github.com/google/logger"
+	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 
 	"./cassandra"
+	"./logger"
 )
 
 const host = "127.0.0.1:9042"
 const keySpace = "employee"
 const connectionTimeout = 10 * time.Second
 
-var verbose = flag.Bool("verbose", false, "print info level logs to stdout")
+var logCtx = context.Background()
 
 func main() {
-	flag.Parse()
-
-	logPath := os.Getenv("LOG_FILE_PATH")
-
-	lf, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0660)
-	if err != nil {
-		logger.Fatalf("failed to open log file: %v", err)
-	}
-	defer lf.Close()
-	defer logger.Init("LoggerExample", *verbose, true, lf).Close()
 
 	c := &cassandra.Cassandra{}
-	logger.Info("connecting to cassandra ", host, ", keyspace ", keySpace, " with a timeout ", connectionTimeout)
+
+	rqId, _ := uuid.NewRandom()
+	rqCtx := logger.WithRqId(logCtx, rqId)
+	log := logger.Logger(rqCtx).Sugar()
+	defer log.Sync()
+
+	log.Infof(
+		"trying to connect - cassandra %s to keyspace %s with timeout %d",
+		host,
+		keySpace,
+		connectionTimeout,
+	)
+
 	c.SetConfig(host, keySpace, connectionTimeout)
-	_, err = c.Open()
+	_, err := c.Open()
 	if err != nil {
 		panic(err)
 	}
-	logger.Info("connected to host ", host)
+
+	log.Infof(
+		"connected - cassandra %s @ %s",
+		host,
+		keySpace,
+	)
+
 	defer c.Close()
-	logger.Info("trying to fetch all employee(s)")
+
+	log.Infof("trying to fetch employees")
 	emps := getAllEmps(c)
-	logger.Info("fetched ", len(emps), " employee(s)")
+	log.Infof("got %d employees", len(emps))
 }
 
 type Emp struct {
