@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ```
-TBD - Detailed instructions
+Detailed instructions
 
 ```
 
@@ -29,9 +29,36 @@ Give examples
 A step by step series of examples that tell how to get a development env running
 
 Make sure you have Docker running, then change to the root directory of the app and issue following command, to bring up the **Cassandra** in **PORT** **9042** with a **MAX_HEAP** of **256M**
+
 ```
 docker-compose -f docker-compose-cassandra.yml up
 ```
+Contents of the file `docker-compose-cassandra.yml is are as follows:
+
+```
+version: '3'
+services:
+  cassandra00:
+    container_name: cassandra00
+    image: launcher.gcr.io/google/cassandra3
+    ports:
+      - '7000:7000'
+      - '7001:7001'
+      - '7199:7199'
+      - '9042:9042'
+      - '9160:9160'
+    environment:
+      - "MAX_HEAP_SIZE=1024M"
+      - "HEAP_NEWSIZE=512M"
+      - "CASSANDRA_BROADCAST_ADDRESS=127.0.0.1"
+    volumes:
+      - ./cassandra_data:/var/lib/cassandra
+
+```
+In the above configuration `CASSANDRA_BROADCAST_ADDRESS` is very important. If this is not provided cluster creation will
+take as much as `10 secs` :sweat:
+
+
 You can also use the following command incase you want to bring up Cassandra with bare minimum config. Please note the the file `docker-compose-cassandra.yml` won't be used in this option and should be used just for testing.
 
 ```

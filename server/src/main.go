@@ -16,7 +16,7 @@ func main() {
 
 	c := &cassandra.Cassandra{}
 	fmt.Println("Setting config...")
-	c.SetConfig("127.0.0.1", "employee", 1*time.Second)
+	c.SetConfig("127.0.0.1:9042", "employee", 10*time.Second)
 	fmt.Println("Opening connection...")
 	_, err := c.Open()
 	if err != nil {

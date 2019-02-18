@@ -42,6 +42,7 @@ func (c *Cassandra) Open() (*Cassandra, error) {
 	cluster := gocql.NewCluster(c.config.Host)
 	cluster.Keyspace = c.config.KeySpaceName
 	cluster.Timeout = c.config.TimeoutDuration
+	cluster.Consistency = gocql.Quorum
 	cluster.DisableInitialHostLookup = true
 	//TODO: think about having gocql password authenticator
 	c.session, err = cluster.CreateSession()
