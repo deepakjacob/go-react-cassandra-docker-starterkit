@@ -38,8 +38,8 @@ type Emp struct {
 	Job      string
 	Mgr      gocql.UUID
 	Hiredate time.Time
-	Sal      float64
-	Comm     float64
+	Sal      string
+	Comm     string
 	Deptno   int
 }
 
@@ -55,9 +55,9 @@ func getAllEmps(c *cassandra.Cassandra) []Emp {
 			Job:      m["job"].(string),
 			Mgr:      m["mgr"].(gocql.UUID),
 			Hiredate: m["hiredate"].(time.Time),
-			// Sal:      m["sal"].(float64),
-			// Comm:     m["comm"].(float64),
-			// Deptno:   m["deptno"].(int),
+			//	Sal:      m["sal"].(string),
+			//	Comm:     m["comm"].(string),
+			//	Deptno:   m["deptno"].(int),
 		})
 		m = map[string]interface{}{}
 	}

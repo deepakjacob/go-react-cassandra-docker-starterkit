@@ -7,21 +7,12 @@ Quick start the next application with the above technologies
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 
-```
-Detailed instructions
-
-```
-
 ### Prerequisites
 
-Make sure that you have
-
-[Docker]() installed and running
-
-[Go](https://golang.org) installed and [GOPATH](https://github.com/golang/go/wiki/GOPATH) and [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) configured correctly
+Make sure that you have [Docker]() installed and running with [Go](https://golang.org) installed and [GOPATH](https://github.com/golang/go/wiki/GOPATH) and [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) configured correctly
 
 ```
-Give examples
+TODO: Give examples
 ```
 
 ### Installing
@@ -29,6 +20,13 @@ Give examples
 A step by step series of examples that tell how to get a development env running
 
 Make sure you have Docker running, then change to the root directory of the app and issue following command, to bring up the **Cassandra** in **PORT** **9042** with a **MAX_HEAP** of **256M**
+
+Clone the repo
+
+```
+$ git clone https://github.com/deepakjacob/go-react-cassandra-docker-starterkit
+```
+Chnage to the root of the project ```$ cd go-react-cassandra-docker-starterkit```
 
 ```
 docker-compose -f docker-compose-cassandra.yml up
@@ -55,7 +53,7 @@ services:
       - ./cassandra_data:/var/lib/cassandra
 
 ```
-In the above configuration `CASSANDRA_BROADCAST_ADDRESS` is very important. If this is not provided cluster creation will
+In the above configuration having `CASSANDRA_BROADCAST_ADDRESS` is very important. If this is not provided cluster creation will
 take as much as `10 secs` :sweat:
 
 
@@ -108,11 +106,11 @@ CREATE TABLE emp(
 
 INSERT INTO dept (deptno, dname, loc) VALUES (1, 'Marketing & Sales', 'New York City');
 
-insert into emp (empno, ename, deptno, job, hiredate, mgr, sal, comm) values (now(), 'KING', null, 'PRESIDENT', '2018-01-31', null, 5000, 10);
+INSERT INTO emp (empno, ename, deptno, job, hiredate, mgr, sal, comm) VALUES (now(), 'KING', null, 'PRESIDENT', '2018-01-31', null, 5000, 10);
 ```
 
 If everything go as expected we should be able to see the following output in console
-![Select rows from dept table](docs/images/SelectRowsFromDeptTable.png "Selec rows from dept table")
+![Select rows from dept table](docs/images/SelectRowsFromDeptTable.png "Select rows from dept table")
 
 
 ## Running the tests

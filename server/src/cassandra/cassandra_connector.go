@@ -50,7 +50,6 @@ func (c *Cassandra) Open() (*Cassandra, error) {
 		return nil, err
 	}
 	fmt.Println("Cassandra init done...")
-
 	return c, nil
 }
 
