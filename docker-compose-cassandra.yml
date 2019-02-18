@@ -1,0 +1,17 @@
+version: '3'
+services:
+  cassandra00:
+    container_name: cassandra00
+    image: launcher.gcr.io/google/cassandra3
+    ports:
+      - '7000:7000'
+      - '7001:7001'
+      - '7199:7199'
+      - '9042:9042'
+      - '9160:9160'
+    environment:
+      - "MAX_HEAP_SIZE=1024M"
+      - "HEAP_NEWSIZE=512M"
+      - "CASSANDRA_BROADCAST_ADDRESS=127.0.0.1"
+    volumes:
+      - ./cassandra_data:/var/lib/cassandra
