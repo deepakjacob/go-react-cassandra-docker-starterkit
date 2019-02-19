@@ -3,3 +3,4 @@ cassandra_data/
 /.DS_Store
 /server/.DS_Store
 /server/src/cassandra/.DS_Store
+/server/src/.DS_Store
