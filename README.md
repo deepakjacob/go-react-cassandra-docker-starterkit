@@ -19,14 +19,32 @@ TODO: Give examples
 
 A step by step series of examples that tell how to get a development env running
 
+#### Setting up authentication
+
+This application uses `Google`'s `OAuth` to authenticate users. In order to setup above, you need to have set up the following `ENV`
+variables
+
+```
+GOOGLE_OAUTH_CLIENT_ID
+GOOGLE_OAUTH_CLIENT_SECRET
+```
+As the application just wants to authenticate, we use the following minimal [OAuth](https://developers.google.com/identity/protocols/googlescopes) scope
+```
+https://www.googleapis.com/auth/userinfo.email"
+```
+
 Make sure you have Docker running, then change to the root directory of the app and issue following command, to bring up the **Cassandra** in **PORT** **9042** with a **MAX_HEAP** of **256M**
 
-Clone the repo
+
+#### Clone the repo
 
 ```
 $ git clone https://github.com/deepakjacob/go-react-cassandra-docker-starterkit
 ```
 Chnage to the root of the project ```$ cd go-react-cassandra-docker-starterkit```
+
+
+#### How to start the application
 
 ```
 docker-compose -f docker-compose-cassandra.yml up
