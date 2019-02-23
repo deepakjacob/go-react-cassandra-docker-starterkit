@@ -131,7 +131,7 @@ If everything go as expected we should be able to see the following output in co
 ![Select rows from dept table](docs/images/SelectRowsFromDeptTable.png "Select rows from dept table")
 
 
-## Running the tests
+#### Running the tests
 
 Explain how to run the automated tests for this system
 
