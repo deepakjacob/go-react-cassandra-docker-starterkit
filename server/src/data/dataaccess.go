@@ -21,6 +21,7 @@ var (
 	logCtx = context.Background()
 )
 
+// Emp represents an employee in the system
 type Emp struct {
 	Empno    gocql.UUID
 	Ename    string
@@ -32,11 +33,12 @@ type Emp struct {
 	Deptno   int
 }
 
+// AccessData provides means to access a cassandra database
 func AccessData() {
 	c := &cassandra.Cassandra{}
 
-	rqId, _ := uuid.NewRandom()
-	rqCtx := logger.WithRqId(logCtx, rqId)
+	rqID, _ := uuid.NewRandom()
+	rqCtx := logger.WithRqId(logCtx, rqID)
 	log := logger.Logger(rqCtx).Sugar()
 	defer log.Sync()
 

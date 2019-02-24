@@ -4,3 +4,5 @@ cassandra_data/
 /server/.DS_Store
 /server/src/cassandra/.DS_Store
 /server/src/.DS_Store
+/client/x-app/src/components/Card/.tern-port
+/client/x-app/src/components/Content/.tern-port

@@ -10,11 +10,11 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-type correlationIdType int
+type correlationIDType int
 
 const (
-	requestIdKey correlationIdType = iota
-	sessionIdKey
+	requestIDKey correlationIDType = iota
+	sessionIDKey
 )
 
 var logger *zap.Logger
@@ -42,14 +42,14 @@ func init() {
 	logger, _ = cfg.Build()
 }
 
-// WithRqId returns a context which knows its request ID
-func WithRqId(ctx context.Context, rqId uuid.UUID) context.Context {
-	return context.WithValue(ctx, requestIdKey, rqId)
+// WithRqID returns a context which knows its request ID
+func WithRqID(ctx context.Context, rqID uuid.UUID) context.Context {
+	return context.WithValue(ctx, requestIDKey, rqID)
 }
 
-// WithSessionId returns a context which knows its session ID
-func WithSessionId(ctx context.Context, sessionId uuid.UUID) context.Context {
-	return context.WithValue(ctx, sessionIdKey, sessionId)
+// WithSessionID returns a context which knows its session ID
+func WithSessionID(ctx context.Context, sessionID uuid.UUID) context.Context {
+	return context.WithValue(ctx, sessionIDKey, sessionID)
 }
 
 // Logger returns a zap logger with as much context as possible
@@ -58,16 +58,16 @@ func Logger(ctx context.Context) *zap.Logger {
 	pid := os.Getpid()
 	exec := path.Base(os.Args[0])
 	if ctx != nil {
-		if ctxRqId, ok := ctx.Value(requestIdKey).(uuid.UUID); ok {
+		if ctxRqID, ok := ctx.Value(requestIDKey).(uuid.UUID); ok {
 			newLogger = newLogger.With(
-				zap.String("rqId", ctxRqId.String()),
+				zap.String("rqId", ctxRqID.String()),
 				zap.Int("pid", pid),
 				zap.String("exec", exec),
 			)
 		}
-		if ctxSessionId, ok := ctx.Value(sessionIdKey).(uuid.UUID); ok {
+		if ctxSessionID, ok := ctx.Value(sessionIDKey).(uuid.UUID); ok {
 			newLogger = newLogger.With(
-				zap.String("sessionId", ctxSessionId.String()),
+				zap.String("sessionId", ctxSessionID.String()),
 				zap.Int("pid", pid),
 				zap.String("exec", exec),
 			)
