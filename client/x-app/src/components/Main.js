@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Dashboard from "./Content/Dashboard"
+import Dashboard from "./Content/Dashboard";
 
 import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle";
 
@@ -17,13 +17,13 @@ const Main = props => {
       <div className={classes.wrapper}>
         <div className={classes.mainPanel}>
           <div className={classes.content}>
-            <Dashboard {...rest}/>
+            <Dashboard {...rest} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired

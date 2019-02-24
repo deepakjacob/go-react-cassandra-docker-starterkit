@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // @material-ui/core
-import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
+import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
 import Update from "@material-ui/icons/Update";
@@ -16,10 +16,10 @@ import Accessibility from "@material-ui/icons/Accessibility";
 
 // core components
 import Card from "../Card/Card";
-import GridItem from "../Grid/GridItem";
-import CardIcon from "../Card/CardIcon";
 import Table from "../Table/Table.jsx";
 import CardBody from "../Card/CardBody";
+import CardIcon from "../Card/CardIcon";
+import GridItem from "../Grid/GridItem";
 import Danger from "../Typography/Danger";
 import CardHeader from "../Card/CardHeader";
 import CardFooter from "../Card/CardFooter";
