@@ -16,7 +16,6 @@ import Accessibility from "@material-ui/icons/Accessibility";
 
 // core components
 import Card from "../Card/Card";
-import Table from "../Table/Table.jsx";
 import CardBody from "../Card/CardBody";
 import CardIcon from "../Card/CardIcon";
 import GridItem from "../Grid/GridItem";
@@ -24,37 +23,12 @@ import Danger from "../Typography/Danger";
 import CardHeader from "../Card/CardHeader";
 import CardFooter from "../Card/CardFooter";
 import GridContainer from "../Grid/GridContainer";
-
-
+import CardTable from '../Table/CardTable.jsx'
 import dashboardStyle from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
 
-const DailyStatsCard = (props) => {
-  const { classes } = props;
-  return (
-    <Card>
-      <CardHeader color="warning">
-        <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-        <p className={classes.cardCategoryWhite}>
-          New employees on 15th September, 2016
-        </p>
-      </CardHeader>
-      <CardBody>
-        <Table
-          tableHeaderColor="warning"
-          tableHead={["ID", "Name", "Salary", "Country"]}
-          tableData={[
-            ["1", "Dakota Rice", "$36,738", "Niger"],
-            ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-            ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-            ["4", "Philip Chaney", "$38,735", "Korea, South"]
-          ]}
-        />
-      </CardBody>
-    </Card>
-  );
-}
+const DailyStatsCard = (props) => <CardTable {...props}/>
 
-const SmallCards = (props) => {
+const SmallCards = props => {
   const { classes } = props;
   return (
     <GridContainer>
@@ -134,15 +108,13 @@ const SmallCards = (props) => {
       </GridItem>
     </GridContainer>
   );
-}
+};
 
-const GraphCard = (props) => {
+const GraphCard = props => {
   const { classes } = props;
   return (
     <Card chart>
-      <CardHeader color="success">
-
-      </CardHeader>
+      <CardHeader color="success" />
       <CardBody>
         <h4 className={classes.cardTitle}>Daily Sales</h4>
         <p className={classes.cardCategory}>
@@ -159,28 +131,28 @@ const GraphCard = (props) => {
       </CardFooter>
     </Card>
   );
-}
-const Dashboard = (props) => {
+};
+const Dashboard = props => {
   return (
     <div>
-      <SmallCards {...props}/>
+      <SmallCards {...props} />
       <GridContainer alignItems="center">
         <GridItem xs={12} sm={12} md={6}>
-          <GraphCard {...props}/>
+          <GraphCard {...props} />
         </GridItem>
         <GridItem xs={12} sm={12} md={6}>
-          <GraphCard {...props}/>
+          <GraphCard {...props} />
         </GridItem>
         <GridItem xs={12} sm={12} md={6}>
           <DailyStatsCard {...props} />
         </GridItem>
         <GridItem xs={12} sm={12} md={6}>
-          <DailyStatsCard {...props}/>
+          <DailyStatsCard {...props} />
         </GridItem>
       </GridContainer>
     </div>
-  );}
-
+  );
+};
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired

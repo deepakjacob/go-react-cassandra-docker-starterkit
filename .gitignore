@@ -6,3 +6,6 @@ cassandra_data/
 /server/src/.DS_Store
 /client/x-app/src/components/Card/.tern-port
 /client/x-app/src/components/Content/.tern-port
+/client/.DS_Store
+/client/x-app/src/assets/jss/.tern-port
+/client/x-app/src/.tern-port
