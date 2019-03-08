@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { compose } from 'recompose'
+// HOCs
+import withSpinner from '../hoc/WithSpinner'
 // core components
 import Card from '../Card/Card'
 import Table from '../Table/Table.jsx'
@@ -34,6 +36,8 @@ const withHeader = WrappedComponent => props => (
   </Card>
 )
 
-const CardTable = compose(withHeader)(_CardTable)
+const CardTable = compose(withHeader, withSpinner({ component: true }))(
+  _CardTable
+)
 
 export default CardTable

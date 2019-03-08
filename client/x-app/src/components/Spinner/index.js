@@ -9,11 +9,12 @@ const styles = {
   }
 }
 
-function LinearIndeterminate(props) {
-  const { classes } = props
+const LinearIndeterminate = props => {
+  const { classes, options: { container, component } } = props
   return (
     <div className={classes.root}>
-      <LinearProgress color="secondary" />
+      {container && <LinearProgress color="primary" />}
+      {component && <LinearProgress color="secondary" />}
     </div>
   )
 }

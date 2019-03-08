@@ -1,35 +1,35 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 // @material-ui/core
-import Icon from "@material-ui/core/Icon";
-import withStyles from "@material-ui/core/styles/withStyles";
+import Icon from '@material-ui/core/Icon'
+import withStyles from '@material-ui/core/styles/withStyles'
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Update from "@material-ui/icons/Update";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import AccessTime from "@material-ui/icons/AccessTime";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import Accessibility from "@material-ui/icons/Accessibility";
+import Store from '@material-ui/icons/Store'
+import Update from '@material-ui/icons/Update'
+import Warning from '@material-ui/icons/Warning'
+import DateRange from '@material-ui/icons/DateRange'
+import LocalOffer from '@material-ui/icons/LocalOffer'
+import AccessTime from '@material-ui/icons/AccessTime'
+import ArrowUpward from '@material-ui/icons/ArrowUpward'
+import Accessibility from '@material-ui/icons/Accessibility'
 
 // core components
-import Card from "../Card/Card";
-import CardBody from "../Card/CardBody";
-import CardIcon from "../Card/CardIcon";
-import GridItem from "../Grid/GridItem";
-import Danger from "../Typography/Danger";
-import CardHeader from "../Card/CardHeader";
-import CardFooter from "../Card/CardFooter";
-import GridContainer from "../Grid/GridContainer";
+import Card from '../Card/Card'
+import CardBody from '../Card/CardBody'
+import CardIcon from '../Card/CardIcon'
+import GridItem from '../Grid/GridItem'
+import Danger from '../Typography/Danger'
+import CardHeader from '../Card/CardHeader'
+import CardFooter from '../Card/CardFooter'
+import GridContainer from '../Grid/GridContainer'
 import CardTable from '../Table/CardTable.jsx'
-import dashboardStyle from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
+import dashboardStyle from '../../assets/jss/material-dashboard-react/views/dashboardStyle'
 
-const DailyStatsCard = (props) => <CardTable {...props}/>
+const DailyStatsCard = props => <CardTable {...props} />
 
 const SmallCards = props => {
-  const { classes } = props;
+  const { classes } = props
   return (
     <GridContainer>
       <GridItem xs={12} sm={6} md={3}>
@@ -107,11 +107,11 @@ const SmallCards = props => {
         </Card>
       </GridItem>
     </GridContainer>
-  );
-};
+  )
+}
 
 const GraphCard = props => {
-  const { classes } = props;
+  const { classes } = props
   return (
     <Card chart>
       <CardHeader color="success" />
@@ -120,7 +120,7 @@ const GraphCard = props => {
         <p className={classes.cardCategory}>
           <span className={classes.successText}>
             <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-          </span>{" "}
+          </span>{' '}
           increase in today sales.
         </p>
       </CardBody>
@@ -130,8 +130,8 @@ const GraphCard = props => {
         </div>
       </CardFooter>
     </Card>
-  );
-};
+  )
+}
 const Dashboard = props => {
   return (
     <div>
@@ -151,11 +151,11 @@ const Dashboard = props => {
         </GridItem>
       </GridContainer>
     </div>
-  );
-};
+  )
+}
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
-};
+}
 
-export default withStyles(dashboardStyle)(Dashboard);
+export default withStyles(dashboardStyle)(Dashboard)

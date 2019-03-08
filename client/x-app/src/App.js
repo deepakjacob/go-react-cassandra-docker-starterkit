@@ -1,32 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-// THEME
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-import muiTheme from './theme/muiTheme'
+// util
+import { compose } from 'recompose'
 
-import { compose, branch } from 'recompose'
+// HOCs
+import withSpinner from './components/hoc/WithSpinner'
 
 // COMPONENTS
 import Main from './components/Main'
-import Spinner from './components/Spinner'
 
-const App = props => (
-  <MuiThemeProvider theme={muiTheme}>
-    <Main />
-  </MuiThemeProvider>
-)
-
-const withSpinner = WrappedComponent => props => {
-  const [loading, setLoading] = useState(true)
-  setTimeout(() => setLoading(false), 3000)
-  return loading ? <Spinner loadingText="Loading..." /> : <WrappedComponent />
-}
-const withPropLoader = WrappedComponent => props => {
+var withLoader = WrappedComponent => props => {
   const mergedProps = {
     ...props,
-    ...{ loadingText: 'Loading....' }
+    ...{ loadingText: 'Loading....', loading: true }
   }
   return <WrappedComponent {...mergedProps} />
 }
-
-export default compose(withPropLoader, withSpinner)(App)
+var app = props => <Main {...props} />
+export default compose(withLoader, withSpinner({ container: true }))(app)
